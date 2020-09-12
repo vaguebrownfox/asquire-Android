@@ -2,6 +2,9 @@ package aashi.fiaxco.asquire0x02;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +12,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Objects;
 
 import aashi.fiaxco.asquire0x02.data.Question;
 
@@ -26,6 +31,8 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
 
     private String mQuestion;
     private String[] mOptions;
+
+    private View mRootView;
 
 
     public static QuestionFragment newInstance(Question question) {
@@ -54,10 +61,10 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_question, container, false);
+        mRootView = inflater.inflate(R.layout.fragment_question, container, false);
 
-        TextView questionTV = rootView.findViewById(R.id.fragment_question);
-        RadioGroup optionsRG = rootView.findViewById(R.id.fragment_radioGroup);
+        TextView questionTV = mRootView.findViewById(R.id.fragment_question);
+        RadioGroup optionsRG = mRootView.findViewById(R.id.fragment_radioGroup);
 
         questionTV.setText(mQuestion);
 
@@ -69,7 +76,7 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
             optionsRG.addView(optionRB);
         }
 
-        return rootView;
+        return mRootView;
     }
 
     @Override
@@ -77,6 +84,18 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
         RadioButton option = (RadioButton) view;
 
         Toast.makeText(getContext(), "Selected: " + option.getText(), Toast.LENGTH_SHORT).show();
+
+        FragmentManager fragmentManager = getFragmentManager();
+        assert fragmentManager != null;
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        Question question = MainActivity.allQuestions.get("" + MainActivity.questionIndex++);
+
+        Fragment questionFragment =
+                QuestionFragment.newInstance(Objects.requireNonNull(question));
+
+        fragmentTransaction.add(R.id.main_linearLayout, questionFragment).commit();
+
 
     }
 }

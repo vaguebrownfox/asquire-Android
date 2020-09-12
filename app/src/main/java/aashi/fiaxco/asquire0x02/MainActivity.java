@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout mQuestionsLL;
 
     public static HashMap<String, Question> allQuestions = Questions.getQuestionHashMap();
+    public static int questionIndex = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,18 +28,16 @@ public class MainActivity extends AppCompatActivity {
 
         mQuestionsLL = findViewById(R.id.main_linearLayout);
 
-//        Question q1 = allQuestions.get("1");
+        Question q1 = allQuestions.get("1");
 //        Question q2 = allQuestions.get("2");
-//
-//        assert q1 != null;
-//        addQuestionFragment(q1);
-//        assert q2 != null;
-//        addQuestionFragment(q2);
 
-        for (int i=1; i<=allQuestions.size(); i++) {
-            Question question = Objects.requireNonNull(allQuestions.get("" + i));
-            addQuestionFragment(question);
-        }
+        assert q1 != null;
+        addQuestionFragment(q1);
+
+//        for (int i=1; i<=allQuestions.size(); i++) {
+//            Question question = Objects.requireNonNull(allQuestions.get("" + i));
+//            addQuestionFragment(question);
+//        }
 
     }
 
@@ -48,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
 
         Fragment questionFragment = QuestionFragment.newInstance(question);
         fragmentTransaction.add(mQuestionsLL.getId(), questionFragment).commit();
+
+        questionIndex++;
     }
 
 }
