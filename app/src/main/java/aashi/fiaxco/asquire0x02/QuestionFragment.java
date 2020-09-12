@@ -10,6 +10,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import aashi.fiaxco.asquire0x02.data.Question;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link QuestionFragment#newInstance} factory method to
@@ -26,11 +28,11 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
     private String[] mOptions;
 
 
-    public static QuestionFragment newInstance(String question, String[] options) {
+    public static QuestionFragment newInstance(Question question) {
         QuestionFragment fragment = new QuestionFragment();
         Bundle args = new Bundle();
-        args.putString(QUESTION, question);
-        args.putStringArray(OPTIONS, options);
+        args.putString(QUESTION, question.getQuestion());
+        args.putStringArray(OPTIONS, question.getOptions());
         fragment.setArguments(args);
         return fragment;
     }

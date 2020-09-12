@@ -37,16 +37,16 @@ public class MainActivity extends AppCompatActivity {
 
         for (int i=1; i<=allQuestions.size(); i++) {
             Question question = Objects.requireNonNull(allQuestions.get("" + i));
-            addQuestionFragment(question, i);
+            addQuestionFragment(question);
         }
 
     }
 
-    public void addQuestionFragment(Question question, int index) {
+    public void addQuestionFragment(Question question) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-        Fragment questionFragment = QuestionFragment.newInstance(index + ". " + question.getQuestion(), question.getOptions());
+        Fragment questionFragment = QuestionFragment.newInstance(question);
         fragmentTransaction.add(mQuestionsLL.getId(), questionFragment).commit();
     }
 
