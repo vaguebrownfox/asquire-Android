@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#eeee00"
+    android:padding="16dp"
+    android:layout_margin="4dp"
+    android:orientation="vertical"
+    tools:context=".QuestionFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/fragment_question"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Insert a question here?"
+        android:textColor="#0000ff"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"/>
+
+    <RadioGroup
+        android:id="@+id/fragment_radioGroup"
+        android:padding="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <RadioButton
+            android:id="@+id/fragment_radioOptions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Option 1"/>
+        <RadioButton
+            android:id="@+id/fragment_radioOptions2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Option 2"/>
+
+    </RadioGroup>
+
+</LinearLayout>
