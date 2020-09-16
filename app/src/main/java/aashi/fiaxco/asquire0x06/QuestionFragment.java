@@ -96,7 +96,7 @@ public class QuestionFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	                         Bundle savedInstanceState) {
 		// Inflate the layout for this fragment
-		View rootView = inflater.inflate(R.layout.fragment_question, container, false);
+		final View rootView = inflater.inflate(R.layout.fragment_question, container, false);
 
 
 		TextView fragmentQuestionTV = rootView.findViewById(R.id.fragment_question_tv);
@@ -124,7 +124,8 @@ public class QuestionFragment extends Fragment {
 			fragmentOptionsRG.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 				@Override
 				public void onCheckedChanged(RadioGroup radioGroup, int i) {
-					String answer = mOptions[i - 1];
+					RadioButton radioButton = rootView.findViewById(radioGroup.getCheckedRadioButtonId());
+					String answer = radioButton.getText().toString();
 					sendBroadCast(i, answer);
 				}
 			});

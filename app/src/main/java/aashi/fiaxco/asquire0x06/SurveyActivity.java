@@ -12,7 +12,9 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -25,6 +27,7 @@ public class SurveyActivity extends AppCompatActivity {
 	public static String QUESTION_ANSWERED_BROADCAST = "900021";
 	private static HashMap<String, Question> questionHashMap = Questions.getQuestionHashMap();
 	LinearLayout mQuestionsLL;
+	ScrollView mQuestionsScrollV;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,7 @@ public class SurveyActivity extends AppCompatActivity {
 						new IntentFilter(QUESTION_ANSWERED_BROADCAST));
 
 		mQuestionsLL = findViewById(R.id.main_questions_ll);
+		mQuestionsScrollV = findViewById(R.id.main_questions_scrollV);
 
 		addQuestionFragment(questionHashMap.get("1"));
 	}
@@ -47,6 +51,13 @@ public class SurveyActivity extends AppCompatActivity {
 
 		Fragment questionFragment = QuestionFragment.newInstance(question);
 		fragmentTransaction.add(mQuestionsLL.getId(), questionFragment).commit();
+
+		mQuestionsScrollV.postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				mQuestionsScrollV.fullScroll(View.FOCUS_DOWN);
+			}
+		}, 200);
 
 	}
 
