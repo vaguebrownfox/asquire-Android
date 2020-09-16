@@ -4,13 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.fragment.app.Fragment;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,17 +14,16 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.fragment.app.Fragment;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+
 import aashi.fiaxco.asquire0x06.data.Question;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link QuestionFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class QuestionFragment extends Fragment {
 
-	// TODO: Rename parameter arguments, choose names that match
-	// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+	// the fragment initialization parameters
 	public static final String QUES_PARAM = "param1";
 	public static final String OPTN_PARAM = "param2";
 	public static final String QNO_PARAM = "param3";
@@ -42,7 +34,7 @@ public class QuestionFragment extends Fragment {
 
 
 
-	// TODO: Rename and change types of parameters
+	// Types of parameters
 	private String mQuestion;
 	private String[] mOptions;
 	private int[] mNQns;
@@ -55,9 +47,6 @@ public class QuestionFragment extends Fragment {
 	}
 
 	/**
-	 * Use this factory method to create a new instance of
-	 * this fragment using the provided parameters.
-	 *
 	 * @param question Parameter 1.
 	 * @return A new instance of fragment QuestionFragment.
 	 */
@@ -98,7 +87,7 @@ public class QuestionFragment extends Fragment {
 		// Inflate the layout for this fragment
 		final View rootView = inflater.inflate(R.layout.fragment_question, container, false);
 
-
+		// All fragment view elements
 		TextView fragmentQuestionTV = rootView.findViewById(R.id.fragment_question_tv);
 		RadioGroup fragmentOptionsRG = rootView.findViewById(R.id.fragment_options_rg);
 		LinearLayout fragmentOptionLL = rootView.findViewById(R.id.fragment_option_ll);
@@ -120,15 +109,22 @@ public class QuestionFragment extends Fragment {
 				fragmentOptionsRG.addView(optionRB);
 			}
 
-
 			fragmentOptionsRG.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 				@Override
 				public void onCheckedChanged(RadioGroup radioGroup, int i) {
 					RadioButton radioButton = rootView.findViewById(radioGroup.getCheckedRadioButtonId());
 					String answer = radioButton.getText().toString();
-					sendBroadCast(i, answer);
+					sendBroadCast(answer);
+
+					// lock options if its a branching question
+					if (mNQns.length > 1) {
+						for (int j = 0; j < radioGroup.getChildCount(); j++) {
+							radioGroup.getChildAt(j).setEnabled(false);
+						}
+					}
 				}
 			});
+
 		} else {
 			fragmentOptionsRG.setVisibility(View.GONE);
 			fragmentOptionLL.setVisibility(View.VISIBLE);
@@ -137,7 +133,7 @@ public class QuestionFragment extends Fragment {
 				@Override
 				public void onClick(View view) {
 					String answer = fragmentOptionET.getText().toString();
-					sendBroadCast(0, answer);
+					sendBroadCast(answer);
 				}
 			});
 		}
@@ -146,10 +142,9 @@ public class QuestionFragment extends Fragment {
 		return rootView;
 	}
 
-	private void sendBroadCast(int radioBtIndex, String answer) {
+	private void sendBroadCast(String answer) {
 		Intent optionSelectIntent = new Intent(SurveyActivity.QUESTION_ANSWERED_BROADCAST);
 		optionSelectIntent.putExtra(QNO_PARAM, mQno);
-		optionSelectIntent.putExtra(RADIO_IDX, radioBtIndex);
 		optionSelectIntent.putExtra(ANSWER, answer);
 		optionSelectIntent.putExtra(NQ_PARAM, mNQns);
 

@@ -42,7 +42,7 @@ public class Questions {
 
 
 	public static Question question7 = new Question(7,
-			"For how long wheeze is present?",
+			"For how long is the wheeze present?",
 			new String[]{},
 			new int[]{8});
 
@@ -73,7 +73,7 @@ public class Questions {
 
 	public static Question question12 = new Question(12,
 			"Do you have dry or wet cough?",
-			new String[]{"Dry", "Wet"},
+			new String[]{"Wet", "Dry"},
 			new int[]{13, 14});
 
 

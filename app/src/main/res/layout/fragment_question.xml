@@ -37,24 +37,6 @@
 <!--				android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"-->
 <!--				android:textColor="@color/textLight"-->
 <!--				android:textStyle="bold" />-->
-<!--			<RadioButton-->
-<!--				android:id="@+id/fragment_option_rb2"-->
-<!--				android:layout_width="match_parent"-->
-<!--				android:layout_height="wrap_content"-->
-<!--				android:layout_marginVertical="2dp"-->
-<!--				android:text="Option two"-->
-<!--				android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"-->
-<!--				android:textColor="@color/textLight"-->
-<!--				android:textStyle="bold" />-->
-<!--			<RadioButton-->
-<!--				android:id="@+id/fragment_option_rb3"-->
-<!--				android:layout_width="match_parent"-->
-<!--				android:layout_height="wrap_content"-->
-<!--				android:layout_marginVertical="2dp"-->
-<!--				android:text="Option three"-->
-<!--				android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"-->
-<!--				android:textColor="@color/textLight"-->
-<!--				android:textStyle="bold" />-->
 		</RadioGroup>
 
 		<LinearLayout
