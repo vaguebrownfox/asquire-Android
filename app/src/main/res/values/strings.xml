@@ -20,4 +20,10 @@
 	<string name="unit_profile_weight">kg</string>
 	<string name="gender_male_cap">Male</string>
 	<string name="next">Next</string>
+	<string name="todo"> - todo record task activity\n
+		- task fragment\n
+		- fetch tasks and images from REST end point\n
+		- recording audio : openSL ES\n
+		- uploading to firebase</string>
+	<string name="allowed_name_chars2">abcdefghijklmnopqrstuvwxyz</string>
 </resources>

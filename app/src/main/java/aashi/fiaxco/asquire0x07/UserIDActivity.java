@@ -93,7 +93,7 @@ public class UserIDActivity extends AppCompatActivity {
 		editor.apply();
 
 		try {
-			String tempUsr = Objects.requireNonNull(mUserMap.get(name)).toString();
+			Objects.requireNonNull(mUserMap.get(name));
 		} catch (Exception e) {
 			e.printStackTrace();
 			mUserMap = sharedPref.getAll();
@@ -104,7 +104,6 @@ public class UserIDActivity extends AppCompatActivity {
 
 	private Map<String, ?> readUsers() {
 		SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
-
 		return sharedPref.getAll();
 	}
 

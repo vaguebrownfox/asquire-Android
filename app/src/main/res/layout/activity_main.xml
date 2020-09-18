@@ -60,6 +60,8 @@
 				android:autofillHints="false"
 				android:backgroundTint="@color/colorAccent"
 				android:gravity="center"
+				android:digits="@string/allowed_name_chars2"
+				android:maxLength="18"
 				android:hint="New user? Create username..."
 				android:inputType="textPhonetic"
 				android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"

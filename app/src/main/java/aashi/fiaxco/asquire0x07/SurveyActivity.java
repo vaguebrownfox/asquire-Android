@@ -34,7 +34,7 @@ public class SurveyActivity extends AppCompatActivity {
 	public static final String QUESTION_ANSWERED_BROADCAST = "receive_broadcast_asquire";
 	public static final String USER_INFO_BROADCAST = "receive_broadcast_user_info_asquire";
 
-	private static HashMap<String, Question> questionHashMap = Questions.getQuestionHashMap();
+	private HashMap<String, Question> questionHashMap;
 	private LinearLayout mQuestionsLL;
 	private ScrollView mQuestionsScrollV;
 
@@ -49,6 +49,8 @@ public class SurveyActivity extends AppCompatActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_survey);
+
+		questionHashMap = new Questions().getQuestionHashMap();
 
 		// get user id from user id activity
 		Intent i = getIntent();
@@ -189,6 +191,7 @@ public class SurveyActivity extends AppCompatActivity {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
+
 
 				Intent recordTaskIntent = new Intent(SurveyActivity.this, RecordTaskActivity.class);
 				recordTaskIntent.putExtra(UserIDActivity.USER_ID, mUserID);
